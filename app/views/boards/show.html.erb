@@ -67,7 +67,11 @@
 
   <% @active_posts.each do |a_post| %>
     <tr>
-      <td><%= a_post.title %></td>
+      <td><%= a_post.title %>
+      <% if current_user != nil %>
+      <a href="/delete_post/:path_id">Delete post</a>
+      <% end %>
+      </td>
       <td><%= a_post.body %></td>
       <td><%= User.where({ :id => a_post.user_id }).at(0).email %></td>
       <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
